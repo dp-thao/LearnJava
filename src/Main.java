@@ -99,5 +99,6 @@ public class Main {
         // assign value using =*
         var *= c;
         System.out.println("var using *=: " + var);
+
     }
 }
