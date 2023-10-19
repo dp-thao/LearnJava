@@ -56,7 +56,7 @@ public class Main {
         char letter1 = '9';
         System.out.println(letter1);  // prints 9
 
-        char letter2 = 65;
+        char letter2 = 80;
         System.out.println(letter2);  // prints A
     }
 
