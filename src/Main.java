@@ -1,18 +1,31 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import OOP1.JavaMethods;
+import OOP1.JavaStrings;
+import OOP1.Person;
+import OOP1.Student;
+
 public class Main {
     String hello = "Hello World!";
     int age = 20;
     int AGE = 21;
 
     public static void main(String[] args) {
+        // Tạo đối tượng trực tiếp trong lớp
         Main main = new Main();
-        System.out.println("Hello World:");
+        // Truy cập thành phần của đối tượng
         main.HelloWorld();
-        System.out.println("Kiểu dữ liệu:");
         main.DataTypes();
         main.Operators();
+        // Tạo đối tượng khác class
+        Person person = new Person();
+        person.sing();
+
+        Student student = new Student();
+        student.sing();
+        student.say();
+
     }
+
+    // Hello World
     public void HelloWorld() {
         age = 22;
         System.out.println(hello);
