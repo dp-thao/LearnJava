@@ -1,5 +1,6 @@
 package OOP2;
 
+// tính đóng gói
 class Area {
 
     // fields to calculate area

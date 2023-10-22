@@ -206,3 +206,129 @@ II. OOP(2)
     - Data hiding:
          + Ẩn dữ liệu là một cách hạn chế quyền truy cập của các thành viên dữ liệu của chúng tôi bằng cách ẩn chi tiết 
       triển khai. Chúng ta sử dụng access modifiers để ẩn dữ liệu.
+
+III. OOP(3)
+1.Java Nested and Inner Class (Lớp lồng nhau và lớp bên trong Java)
+   - Có thể định nghĩa một lớp trong một lớp khác.
+   ///
+     class OuterClass {
+     // ...
+     class NestedClass {
+     // ...
+     }
+     }
+   ///
+   - Có hai loại lớp lồng nhau có thể tạo:
+         + Non-static nested class (inner class)
+         + Static nested class
+   - Non-static nested class:
+         + Lớp lồng nhau không tĩnh là một lớp trong một lớp khác. Nó có quyền truy cập vào các thành viên của lớp kèm 
+      theo (lớp bên ngoài). Nó thường được gọi là lớp bên trong.
+         + Vì inner class tồn tại bên trong lớp bên ngoài nên trước tiên bạn phải khởi tạo lớp bên ngoài để khởi tạo 
+      lớp bên trong.
+         + Truy cập thành viên của outer class trong innerclass: có thể truy cập các thành viên của outer class bằng 
+      cách sử dụng từ khóa this.
+   - Static Nested Class:
+         + Có thể định nghĩa một static class bên trong một lớp khác. Lớp như vậy được gọi là static nested class. Các
+      static nested class lớp bên trong tĩnh
+         + Không giống như inner class, static nested class không thể truy cập các biến thành viên của outer class. 
+      Đó là vì static nested class không yêu cầu bạn tạo một thể hiện của outer class.
+   - Chú ý:
+         + Java coi lớp bên trong như một thành viên bình thường của một lớp. Chúng giống như các phương thức và biến 
+      được khai báo bên trong một lớp.
+         + Vì các lớp bên trong là thành viên của lớp bên ngoài nên có thể áp dụng bất kỳ công cụ sửa đổi truy cập 
+      nào như private, protected cho lớp bên trong của mình, điều này không thể thực hiện được trong các lớp thông 
+      thường.
+         + Vì lớp lồng nhau là thành viên của lớp bên ngoài bao quanh nó nên bạn có thể sử dụng ký hiệu dấu chấm (.) để 
+      truy cập lớp lồng nhau và các thành viên của nó.
+         + Việc sử dụng lớp lồng nhau sẽ làm cho mã của bạn dễ đọc hơn và cung cấp khả năng đóng gói tốt hơn.
+         + Các lớp lồng nhau không tĩnh (các lớp bên trong) có quyền truy cập vào các thành viên khác của lớp bên 
+      ngoài/lớp kèm theo, ngay cả khi chúng được khai báo là riêng tư.
+2. Java Static Class
+    - Nested Class có 2 loại
+         + Nested non-static class (Inner class)
+         + Nested static class.
+    - Java Nested Static Class:
+         + Chỉ các lớp lồng nhau mới được phép static
+         + Giống như các lớp thông thường, các lớp lồng nhau tĩnh có thể bao gồm cả các trường và phương thức tĩnh và 
+      không tĩnh.
+         + Các lớp lồng nhau tĩnh được liên kết với lớp bên ngoài.
+         + Để truy cập lớp lồng tĩnh, chúng ta không cần các đối tượng của lớp bên ngoài.
+    - Truy cập các thành viên của lớp ngoài:
+         + Các lớp lồng nhau tĩnh được liên kết với lớp bên ngoài. Đây là lý do tại sao các lớp lồng nhau tĩnh chỉ có 
+      thể truy cập các thành viên lớp (trường và phương thức tĩnh) của lớp bên ngoài.
+         + Không thể truy cập các phương thức không tĩnh của outer class từ static classes.
+    - Static Top-level Class: (Lớp cấp cao nhất tĩnh)
+         + Chỉ các lớp lồng nhau mới có thể có static. Không thể có static top-level classes.
+3. Java Anonymous Class (Lớp ẩn danh Java)
+    - Một lớp có thể chứa một lớp khác được gọi là lớp lồng nhau. Có thể tạo một lớp lồng nhau mà không cần đặt tên.
+    - Một lớp lồng nhau không có tên nào được gọi là lớp ẩn danh.
+    - Một lớp ẩn danh phải được định nghĩa bên trong một lớp khác. Do đó, nó còn được gọi là lớp bên trong ẩn danh.
+    - Cú pháp của nó là:
+    class outerClass {
+       // defining anonymous class
+       object1 = new Type(parameterList) {
+       // body of the anonymous class
+       };
+    }
+      Đoạn mã trên tạo một đối tượng, object1, của một lớp ẩn danh khi chạy.
+    - Các lớp ẩn danh thường extend subclasses  hoặc implement interfaces:
+         + a superclass that an anonymous class extends
+         + an interface that an anonymous class implements
+    - Các lớp ẩn danh được định nghĩa bên trong một biểu thức. Vì vậy, dấu chấm phẩy được sử dụng ở cuối các lớp ẩn danh
+   để biểu thị phần cuối của biểu thức.
+    - ưu điểm:
+         + Trong các lớp ẩn danh, các đối tượng được tạo bất cứ khi nào chúng được yêu cầu. Nghĩa là, các đối tượng được
+      tạo ra để thực hiện một số nhiệm vụ cụ thể.
+         + Các lớp ẩn danh cũng giúp chúng ta làm cho mã của mình ngắn gọn hơn.
+4. Java Singleton Class (Lớp đơn Java)
+    -  Singleton là một mẫu thiết kế đảm bảo rằng một lớp chỉ có thể có một đối tượng.
+    - Để tạo một lớp singleton, một lớp phải triển khai các thuộc tính sau:
+         + Tạo một private constructor của lớp để hạn chế việc tạo đối tượng bên ngoài lớp.
+         + Tạo một private attribute của loại lớp tham chiếu đến một đối tượng.
+         + Tạo một public static method cho phép chúng ta tạo và truy cập đối tượng chúng ta đã tạo. Bên trong phương
+      thức, chúng ta sẽ tạo một điều kiện để hạn chế chúng tạo thêm một đối tượng.
+    - Use of Singleton in Java
+         + Singletons có thể được sử dụng khi làm việc với cơ sở dữ liệu. Chúng có thể được sử dụng để tạo nhóm kết nối 
+      nhằm truy cập cơ sở dữ liệu trong khi sử dụng lại cùng một kết nối cho tất cả các máy khách.
+    - Chú ý: Điều quan trọng cần lưu ý là chỉ có một số trường hợp (như logging) trong đó các singleton có ý nghĩa.
+    Nên tránh sử dụng hoàn toàn singleton nếu không chắc chắn có nên sử dụng chúng hay không.
+5. Java enums
+    - enum (viết tắt của enumeration) là loại có một tập hợp các giá trị không đổi cố định.
+    - Sử dụng từ khóa enum để khai báo enum
+      enum Size {
+           SMALL, MEDIUM, LARGE, EXTRALARGE
+      }
+    - Các giá trị này bên trong dấu ngoặc nhọn được gọi là hằng số enum (giá trị).
+    - Các hằng số enum thường được biểu thị bằng chữ hoa.
+    - Enum Class in Java:
+         + Các loại enum được coi là một loại lớp đặc biệt. Nó đã được giới thiệu cùng với việc phát hành Java 5
+         + Một lớp enum có thể bao gồm các phương thức và trường giống như các lớp thông thường.
+         + Khi chúng ta tạo một enum class, trình biên dịch sẽ tạo các thể hiện (đối tượng) của từng hằng số enum. 
+      Ngoài ra, theo mặc định, tất cả hằng số enum luôn ở trạng thái public static final.
+    - Chú ý: Giống như các lớp thông thường, một lớp enum cũng có thể bao gồm các hàm tạo.
+    - Methods of Java Enum Class: Có một số phương thức được xác định trước trong các lớp enum có sẵn để sử dụng.
+         + ordinal(): phương thức trả về vị trí của hằng số enum
+         + compareTo(): phương thức so sánh các hằng số enum dựa trên giá trị thứ tự của chúng.
+         + toString(): phương thức trả về biểu diễn chuỗi của hằng số enum
+         + name(): phương thức trả về tên đã xác định của hằng số enum ở dạng chuỗi. Giá trị trả về từ phương thức 
+      name() là final.
+         + valueOf(): phương thức lấy một chuỗi và trả về một hằng số enum có cùng tên chuỗi.
+         + values(): phương thức trả về một mảng kiểu enum chứa tất cả các hằng số enum
+    - Why Java Enums?:
+         + enum được giới thiệu để thay thế việc sử dụng hằng số int.
+         + Ngoài ra, enum cung cấp compile-time type safety.
+6. Java enum Constructor
+    - Một lớp enum có thể bao gồm một hàm tạo giống như một lớp thông thường. Các hàm tạo enum này là:
+         + private - accessible within the class
+         + package-private - accessible within the package
+7. Java enum Strings
+    - Có thể lấy biểu diễn chuỗi của các hằng enum bằng phương thức toString() hoặc phương thức name()
+    - Thay đổi giá trị chuỗi mặc định của enum:
+         + Chúng ta có thể thay đổi cách biểu diễn chuỗi mặc định của hằng enum bằng cách ghi đè phương thức toString().
+    - Không thể ghi đè phương thức name(). Đó là vì phương thức name() là final
+8. Java Reflection
+    - sự phản chiếu cho phép chúng ta kiểm tra và thao tác các lớp, giao diện, hàm tạo, phương thức và trường trong 
+   thời gian chạy.
+    - Có một lớp trong Java tên là Class lưu giữ tất cả thông tin về các đối tượng và lớp trong thời gian chạy. Đối 
+   tượng của Class có thể được sử dụng để thực hiện sự phản chiếu.
