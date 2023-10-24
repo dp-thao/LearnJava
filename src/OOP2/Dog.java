@@ -1,6 +1,6 @@
 package OOP2;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
     public String type="mammal";
 
     Dog() {

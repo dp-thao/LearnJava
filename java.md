@@ -332,3 +332,33 @@ III. OOP(3)
    thời gian chạy.
     - Có một lớp trong Java tên là Class lưu giữ tất cả thông tin về các đối tượng và lớp trong thời gian chạy. Đối 
    tượng của Class có thể được sử dụng để thực hiện sự phản chiếu.
+
+IV. Java Exception Handling (Xử lý ngoại lệ)
+1. Java Exception
+2. Java Exception Handling
+   - Những cách xử lý ngoại lệ:
+     + try...catch block
+     + finally block
+     + throw and throws keyword
+   - try ... catch block:
+     + Được sử dụng để xử lý các ngoại lệ trong Java.
+   - finally:
+     + luôn được thực thi bất kể có ngoại lệ hay không.
+     + đối với mỗi trykhối, chỉ có thể có một finallykhối.
+     + Nếu một ngoại lệ xảy ra, khối finally sẽ được thực thi sau khối try...catch đó. Ngược lại, nó sẽ được thực thi sau khối try. Đối với mỗi khối try, chỉ có thể có một khối finally.
+   - Java throw and throws keyword:
+     + throw được sử dụng để ném một ngoại lệ một cách rõ ràng
+     + Khi chúng ta ném ra một ngoại lệ, luồng chương trình sẽ chuyển từ khối thử sang khối bắt.
+3. Java try ... catch
+   - In Java, we can use a try block without a catch block. However, we cannot use a catch block without a try block.
+   - Có thể sử dụng khối try cùng với khối final. The finally block is always executed whether there is an exception inside the try block or not.
+4. Java throw and throws
+   - các ngoại lệ có thể được phân thành hai loại: Ngoại lệ được kiểm tra, ngoại lệ không được kiểm tra.
+     + Ngoại lệ không được kiểm tra: Chúng không được kiểm tra tại thời gian biên dịch mà tại thời gian chạy
+     + Ngoại lệ được kiểm tra:  Chúng được kiểm tra tại thời điểm biên dịch
+   - Java throws keyword
+     - Cú pháp:
+       - accessModifier returnType methodName() throws ExceptionType1, ExceptionType2 … {
+            // code
+         }
+   - Java throws:
