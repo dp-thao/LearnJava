@@ -1,5 +1,6 @@
 package StudentManagement;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class Main {
         System.out.println("  3. Xóa sinh viên.");
         System.out.println("  4. Cập nhật gpa sinh viên.");
         System.out.println("  5. Tìm kiếm sinh viên.");
+        System.out.println("  6. Sắp xếp sinh viên.");
         System.out.println("  0. Thoát chương trình.");
         System.out.println("=============================================");
         Scanner scanner = new Scanner(System.in);
@@ -54,10 +56,40 @@ public class Main {
                 student.SearchStudentByName(students);
                 menu();
                 break;
+            case 6:
+                //student.SortStudentByAge(students);
+                //
+                SortMenu();
+                menu();
+                break;
             case 0:
                 exit(0);
             default:
                 break;
+        }
+    }
+
+    public void SortMenu() {
+        System.out.println("\n1. Sắp xếp theo GPA giảm dần");
+        System.out.println("2. Sắp xếp theo tuổi tăng dần");
+        System.out.println("0. Thoát chức năng sắp xếp");
+        System.out.print("Lựa chọn sắp xếp theo: ");
+        Scanner scanner = new Scanner(System.in);
+        int inner = scanner.nextInt();
+        switch (inner) {
+            case 1:
+                student.SortStudentByGPA(students);
+                SortMenu();
+                break;
+            case 2:
+                student.SortStudentByAge(students);
+                SortMenu();
+                break;
+            case 0:
+                menu();
+                break;
+            default:
+                SortMenu();
         }
     }
 }

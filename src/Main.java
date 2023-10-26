@@ -1,27 +1,41 @@
-import OOP1.JavaMethods;
-import OOP1.JavaStrings;
-import OOP1.Person;
-import OOP1.Student;
-
 public class Main {
     String hello = "Hello World!";
     int age = 20;
     int AGE = 21;
 
     public static void main(String[] args) {
-        // Tạo đối tượng trực tiếp trong lớp
-        Main main = new Main();
-        // Truy cập thành phần của đối tượng
-        main.HelloWorld();
-        main.DataTypes();
-        main.Operators();
-        // Tạo đối tượng khác class
-        Person person = new Person();
-        person.sing();
 
-        Student student = new Student();
-        student.sing();
-        student.say();
+        int[] age = {1, 2, 3, 4};
+
+        int[] x = new int[5];
+        int[] age1 = age;
+        //System.out.println(x[4]);
+
+        for(int i = 0; i < age.length; i++) {
+            age[i]++;
+        }
+
+        for (int a:age) {
+            a += 1;
+        }
+
+        for(int i = 0; i < age1.length; i++) {
+            System.out.println(age1[i]);
+        }
+
+        // Tạo đối tượng trực tiếp trong lớp
+//        Main main = new Main();
+//        // Truy cập thành phần của đối tượng
+//        main.HelloWorld();
+//        main.DataTypes();
+//        main.Operators();
+//        // Tạo đối tượng khác class
+//        Person person = new Person();
+//        person.sing();
+//
+//        Student student = new Student();
+//        student.sing();
+//        student.say();
 
     }
 
