@@ -620,3 +620,42 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
 
    - Java collections framework có một lớp có tên Stack cung cấp chức năng của cấu trúc dữ liệu ngăn xếp.
    - The Stack class extends the Vector class.
+
+
+# XI. JAVA SET
+
+## 1. Java Set Interface
+   - Không chứa các phần tử trùng lặp
+   - Set là một giao diện nên không tạo được đối tượng
+   - Để sử dụng chức năng của set, sẽ sử dụng thông qua class implement Set:
+     + HashSet
+     + LinkedHashSet
+     + EnumSet
+     + TreeSet
+   - Interface extend Set
+     + SortedSet
+     + NavigableSet
+
+## 2. Java HashSet
+   - Theo mặc định:
+     + dung lượng của bộ băm sẽ là 16
+     + hệ số tải sẽ là 0,75
+   - Các phần tử trong cấu trúc dữ liệu hash không được lưu trữ theo thứ tự cố định và không có chỉ mục cho từng phần tử.
+
+## 3. Java enumSet
+   - enumSet không có các hàm tạo công khai. Phải sử dụng các phương thức được xác định trước để tạo một bộ enum.
+   - enum cung cấp một cách hiệu quả để lưu trữ các giá trị enum
+   - Một bộ enum chỉ lưu trữ các giá trị enum của một enum cụ thể, JVM đã biết tất cả các giá trị có thể có của tập hợp.
+   - Đây là lý do tại sao các bộ enum được triển khai nội bộ dưới dạng một chuỗi bit. Bits chỉ định xem các phần tử có 
+  trong tập enum hay không.
+   - Bit của phần tử tương ứng được bật nếu phần tử đó có trong tập hợp.
+
+## 4. Java LinkedHashSet
+   - các phần tử được lưu trữ trong bảng băm tương tự như HashSet.
+   - Danh sách liên kết xác định thứ tự các phần tử được chèn vào bảng băm.
+
+## 5. Java SortedSet Interface
+   - được sử dụng để lưu trữ các phần tử theo thứ tự nào đó trong một tập hợp.
+
+## 6. Java NavigableSet Interface
+   - cung cấp các tính năng để điều hướng giữa các phần tử đã đặt.
