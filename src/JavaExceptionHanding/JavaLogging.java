@@ -1,21 +1,24 @@
 package JavaExceptionHanding;
 
-import java.util.logging.Filter;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public class JavaLogging {
     public static void main(String[] args) {
 
+        // Phương getLogger()thức của Loggerlớp được sử dụng để tìm hoặc tạo một tệp Logger. Đối số chuỗi xác định tên của logger.
         Logger logger = Logger.getLogger("newLoggerName");
+        logger.setLevel(Level.INFO); // Đặt mức ghi log là INFO
         logger.info( "This is INFO log level message");
         logger.warning( "This is WARNING log level message");
 
-        // get a filter
-        Filter filter = logger.getFilter();
-
-        // set a filter
-        logger.setFilter(filter);
-
-
+//        try {
+//            // Mã có thể ném ngoại lệ
+//            ConsoleHandler consoleHandler = new ConsoleHandler();
+//            SimpleFormatter simpleFormatter = new SimpleFormatter();
+//            consoleHandler.setFormatter(simpleFormatter);
+//            logger.addHandler(consoleHandler);
+//        } catch (Exception e) {
+//            logger.log(Level.SEVERE, "An error occurred", e);
+//        }
     }
 }
