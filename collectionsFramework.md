@@ -187,7 +187,7 @@
      *) Imlementing Multiple Interface
    - Một class có thể implement nhiều interface.
    - Giống như class, interface có thể kế thừa interface khác.
-   - Bất kì lớp nào interface lớp trừu tượng thì đều phải triển khai tất cả các phương thức trừu tượng của lớp đó.
+   - Bất kì class nào implement lớp trừu tượng thì đều phải triển khai tất cả các phương thức trừu tượng của lớp đó.
    - ưu điểm của Interface:
       + Interface giúp tạo tính trừu tượng trong Java.
       + Hàm getArea() tính diện tích của đa giác, cách tính của diện tích là khác nhau đối với đa giác khác nhau.
@@ -596,8 +596,7 @@ nhóm giống như tập hợp trong toán học.
    - Java Vector vs. ArrayList:
       + Cả ArrayList và Vector đều triển khai List interface và cung cấp các chức năng giống nhau
       + Lớp Vector đồng bộ hóa từng hoạt động riêng lẻ. Điều này có nghĩa là bất cứ khi nào chúng ta muốn thực hiện một 
-số thao tác trên vectơ, lớp Vector 
-    sẽ tự động áp dụng khóa cho thao tác đó.
+số thao tác trên vectơ, lớp Vector sẽ tự động áp dụng khóa cho thao tác đó.
       + Đó là bởi vì khi một luồng đang truy cập một vectơ và cùng lúc một luồng khác cố gắng truy cập vào nó, một ngoại
 lệ có tên ConcurrentModificationException sẽ được tạo ra. Do đó, việc sử dụng khóa liên tục cho mỗi thao tác làm cho 
 vectơ kém hiệu quả hơn.
@@ -621,6 +620,51 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
    - Java collections framework có một lớp có tên Stack cung cấp chức năng của cấu trúc dữ liệu ngăn xếp.
    - The Stack class extends the Vector class.
 
+# X. JAVA MAP
+
+## 1. Java Map Interface
+
+   - cung cấp chức năng của cấu trúc dữ liệu bản đồ.
+   - Các phần tử được lưu trữ theo cặp: key/value.
+     + key là giá trị duy nhất được liên kết với các value riêng lẻ.
+   - map không chứa các key trùng lặp. mỗi key được liên kết với một giá trị duy nhất
+    keys  -   values
+    us    -   United States
+    br    -   Brazil
+    es    -   Spain
+   - Chú ý: Map có 3 loại khác nhau:
+      + the set of keys
+      + the set of values
+      + the set of key/value
+   - Các class triển khai Map: HashMap, EnumMap, LinkedHashMap, WeakHashMap, TreeMap
+
+## 2. Java HashMap
+
+
+## 3. Java LinkedHashMap
+   - Dạng {five=5, three=3, seven=7, six=6} được sử dụng để biểu thị một Map trong ngôn ngữ Java, 
+   - trong khi [five=5, three=3, seven=7, six=6] là một chuỗi đơn thuần biểu thị một danh sách cặp key-value.
+
+## 4. Java WeakHashMap
+
+## 5. Java Enum Map
+
+
+## 6. Java SortedMap Interface
+
+
+## 7. Java NavidableMap Interface
+
+
+## 8. Java TreeMap
+
+
+## 9. Java ConcurrentMap Interface
+
+## 10. Java ConcurrentaHashMap
+   - cung cấp map theo luồng, nhiều luồng có thể truy cập map cùng một lúc, không làm ảnh hưởng đến tính nhất quán trong
+  map.
+   - không yêu cầu thứ tự phần tử.
 
 # XI. JAVA SET
 
@@ -659,3 +703,27 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
 
 ## 6. Java NavigableSet Interface
    - cung cấp các tính năng để điều hướng giữa các phần tử đã đặt.
+
+## 7. TreeSet
+
+## 8. Thuật toán
+   - Các thuật toán trong java là các phương thức tĩnh
+   - sắp xếp: sort()
+   - xáo trộn: shuffle()
+   - thao tác dữ liệu:
+     + reverse();
+     + ...
+   - binarySearch(): tìm kiếm nhị phân
+   - ...
+## 9. Java Iterator
+   - has subinterface: ListIterator
+   - methor:
+     + hasNext();
+     + next()
+     + remove()
+     + forEachRemaining()
+
+## 10. Java Listlterator
+   - cung cấp chức năng truy cập phần tử của danh sách.
+   - Nó là hai chiều. Điều này có nghĩa là nó cho phép chúng ta lặp lại các phần tử của danh sách theo cả hai hướng.
+
