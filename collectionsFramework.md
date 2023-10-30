@@ -97,7 +97,7 @@
    - Sử dụng để kiểm tra xem một đối tượng của một lớp có phải là một thể hiện của giao diện được lớp đó triển khai
      hay không.
 
-# **V. OOP(2)**
+# V. OOP(2)
 
 ## 1. Java Inheritance (Kế thừa)
 
@@ -157,7 +157,7 @@
    - Sử dụng từ khóa abstract để khai báo một lớp trừu tượng.
    - Một lớp trừu tượng có thể có cả phương thức thông thường và phương thức trừu tượng.
    - Một lớp abstract không bị bắt buộc override những phương thức của lớp cha interface.
-   - Một lớp cụ thể bắt buộc phải averride những phương thức của lớp cha interface.
+   - Một lớp cụ thể bắt buộc phải override những phương thức của lớp cha interface.
      *) Java Abstract Method
    - Một phương thức không có phần thân được gọi là phương thức abstract
    - Nếu một lớp chứa một phương thức trừu tượng thì lớp đó phải được khai báo là trừu tượng
@@ -238,7 +238,7 @@
       + Ẩn dữ liệu là một cách hạn chế quyền truy cập của các thành viên dữ liệu của chúng tôi bằng cách ẩn chi tiết
         triển khai. Chúng ta sử dụng access modifiers để ẩn dữ liệu.
 
-# **VI. OOP(3)**
+# VI. OOP(3)
 
 ## 1. Java Nested and Inner Class (Lớp lồng nhau và lớp bên trong Java)
 
@@ -380,7 +380,7 @@
    - Có một lớp trong Java tên là Class lưu giữ tất cả thông tin về các đối tượng và lớp trong thời gian chạy. Đối
      tượng của Class có thể được sử dụng để thực hiện sự phản chiếu.
 
-# **VII. Java Exception Handling (Xử lý ngoại lệ)**
+# VII. Java Exception Handling (Xử lý ngoại lệ)
 
 ## 1. Java Exception
 
@@ -529,7 +529,7 @@ nào có thể xảy ra thì sử dụng throws.
      + cung cấp hỗ trợ chẩn đoán và gỡ lỗi vấn đề
 
 
-# **VIII. JAVA LIST**
+# VIII. JAVA LIST
 
 ## 1. Java Collections Framework
 
@@ -619,6 +619,70 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
 
    - Java collections framework có một lớp có tên Stack cung cấp chức năng của cấu trúc dữ liệu ngăn xếp.
    - The Stack class extends the Vector class.
+
+# IX. JAVA QUEUE
+
+## 1. Java Queue Interface
+   - quản lý phần tử theo cớ chế: First-In-First-Out (FIFO),phần tử đầu tiên được thêm vào hàng đợi là phần tử đầu tiên
+   được lấy ra khỏi hàng đợi.
+   - Phương thức:
+   - add(): là một phương thức kế thừa từ Collection interface.
+  sử dụng add() để thêm một phần từ vào hàng đợi, nếu hàng đợi đầy (đối với hàng đợi giới hạn kích thước), nó sẽ ném
+  ra ngoại lệ, báo rằng không thể thêm phần tử.
+   - offer(): là một phương thức trong Queue interface.
+  sử dụng offer() để thêm một phần tử vào hàng đợi, nếu hàng đợi đầy, nó sẽ trả về false, không có ngoại lệ được ném ra.
+
+## 2. Java PriorityQueue : Hàng đợi ưu tiên
+
+   - Cấu trúc hàng đợi được sắp xếp dựa trên sự ưu tiên, các phần tử được sắp xếp theo một tiêu chí ưu tiên.
+   - phần tử có ưu tiên cao nhất sẽ luôn được lấy ra trước.
+   - sử dụng PriorityQueue để tạo hàng đợi ưu tiên.
+
+## 3. Java Deque Interface
+   - là interface trong java, đại diện cho một cấu trúc dữ liệu hàng đợi có khả năng thêm và loại bỏ phần tử ở cả 2 đầu.
+
+## 3. Java LinkedList
+   - cung cấp chức năng của cấu trúc dữ liệu danh sách được liên kết (liên kết đôi).
+   - mỗi phần tử trong danh sách liên kết được gọi là một nút. gồm 3 trường:
+     + Pre: lưu trữ địa chỉ của phần tử trước đó trong danh sách. phần tử đầu tiên là null
+     + Next: Lưu trữ địa chỉ của phần tử tiếp theo trong danh sách. null cho phần tử cuối cùng.
+     + Data: lưu trữ dữ liệu thực tế
+   - Các phần tử trong danh sách liên kết không được lưu trữ theo thứ tự. chúng nằm rải rác và được kết nối thông qua
+   các liên kết (Pre và Next).
+   - Có chứa phần tử trùng lặp
+   - Lưu ý: có thể tạo LinkedList bằng các giao diện trong Java:
+       `// create linkedlist using List
+       List<String> animals1 = new LinkedList<>();
+        // creating linkedlist using Queue
+        Queue<String> animals2 = new LinkedList<>();
+        // creating linkedlist using Deque
+        Deque<String> animals3 = new LinkedList<>();`
+       Nếu linkedList được tạo bằng một giao diện thì không thể sử dụng các phương thức do các giao diện khác cung cấp.
+   "animal1" không thể sử dụng các phương thức của Queue và Deque
+
+## 4. Java ArrayDeque
+
+
+## 5. Java BlockingQueue Interface (hàng đợi chặn)
+   - mọi thao tác phải đợi cho đến khi được thực hiện thành công.
+   - được sử dụng để quản lý và đồng bộ hóa việc chia sẻ dữ liệu giữa các tiến trình hoặc luồng.
+   - được gọi là thread-safe collection  (an toàn theo luồng), nó hữu ích trong hoạt động đa luồng.
+   - giả sử một luồng đang chèn các phần tử và luồng khác xóa phần tử khỏi hàng đợi, nếu luồng đầu tiên chạy chậm hơn
+   thì blockingqueue sẽ khiến luồng thứ 2 đợi đến khi luồng thứ 1 hoàn thành.
+
+## 6. Java ArrayBlocking Queue
+   - bắt buộc phải cung cấp kích thước của mảng
+   - put() và take() hỗ trợ hoạt động chặn trong arraybloking queue. giúp phân biệt arraybloking queue với hàng đợi
+   thông thường khác.
+   - Trong các quy trình đa luồng, chúng ta có thể sử dụng put()và take()chặn hoạt động của một luồng để đồng bộ hóa nó 
+   với một luồng khác. Các phương thức này sẽ đợi cho đến khi chúng có thể được thực thi thành công.
+
+## 7. Java LinkedBlockingQueue
+   - không bắt buộc cung cấp kích thước mảng
+   - giống với arrayBloking các phương thức, khác nhau:
+   - arrayBloking: bắt buộc cố định kích thước hàng đợi
+   - linkedBloking: không bắt buộc cố định
+   - trong một số trường hợp khi cố định kích thước hàng đợi sẽ giúp hoạt động nhanh hơn
 
 # X. JAVA MAP
 
