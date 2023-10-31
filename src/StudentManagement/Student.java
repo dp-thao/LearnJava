@@ -6,7 +6,7 @@ public class Student extends People {
     /* điểm trung bình của sinh viên */
     private float gpa;
     // Lớp môn học tự định nghĩa
-    private Subject subject;
+    private TreeSet<Subject> subjects;
     ArrayList<Student> students = new ArrayList<>();
     Student() {}
 
@@ -28,13 +28,14 @@ public class Student extends People {
             student.setAge(scanner.nextInt());
             System.out.print("Nhập GPA sinh viên: ");
             student.gpa = scanner.nextFloat();
-            // Môn học1
-            student.subject = new Subject();
-            System.out.print("Nhập môn học 1: ");
-            scanner.nextLine();
-            student.subject.setSubject1(scanner.nextLine());
-            System.out.print("Nhập môn học 2: ");
-            student.subject.setSubject2(scanner.nextLine());
+            System.out.print("Có nhập thông tin môn học không (1.Có - 0.Không)?: ");
+            int result = scanner.nextInt();
+            if (result == 1) {
+                Subject subject = new Subject();
+                student.subjects = subject.AddSubject();
+            } else {
+                student.subjects = new TreeSet<>();
+            }
             // Thêm sinh viên vào danh sách
             students.add(student);
         }
@@ -44,9 +45,14 @@ public class Student extends People {
     // Hiện sinh viên
     public static void DisplayStudent(Student student) {
         try {
-            // System.out.println("Mã sinh viên \t\t Họ và tên \t\t Tuổi \t\t GPA");
-            System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
-                    student.getAge() + "\t\tGPA: " + student.gpa + "\t\tMôn học 1: " + student.subject.getSubject1() + "\t\tMôn học 2: " + student.subject.getSubject2());
+            if (student.subjects.size() > 0) {
+                Subject subject = new Subject();
+                System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
+                        student.getAge() + "\t\tGPA: " + student.gpa + "\t\tMôn học: " + subject.DisplaySubject(student.subjects));
+            } else {
+                System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
+                        student.getAge() + "\t\tGPA: " + student.gpa);
+            }
             System.out.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,14 +64,19 @@ public class Student extends People {
         try {
             // System.out.println("Mã SV \t\t Họ và tên \t\t Tuổi \t\t GPA");
             for (Student student : students) {
-                System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
-                        student.getAge() + "\t\tGPA: " + student.gpa + "\t\tMôn học 1: " + student.subject.getSubject1() + "\t\tMôn học 2: " + student.subject.getSubject2());
+                if (student.subjects.size() > 0) {
+                    Subject subject = new Subject();
+                    System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
+                            student.getAge() + "\t\tGPA: " + student.gpa + "\t\tMôn học: " + subject.DisplaySubject(student.subjects));
+                } else {
+                    System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
+                            student.getAge() + "\t\tGPA: " + student.gpa);
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
 
     // Xóa 1 sinh viên theo mã
     public void DeleteStudent(ArrayList<Student> students) {
@@ -87,6 +98,63 @@ public class Student extends People {
                 DisplayStudents(students);
             }
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Cập nhật môn học sinh viên theo tên sinh viên
+    public void UpdateSubjectStudent(ArrayList<Student> students) {
+         try {
+             Scanner scanner = new Scanner(System.in);
+             System.out.print("\nNhập tên sinh viên muốn cập nhân môn học: ");
+             String nameStudent = scanner.next();
+             int count = 0;
+             // tìm kiếm sinh viên để cập nhật thông tin môn học
+             for (int i = 0; i < students.size(); i++) {
+                 if (students.get(i).getName().equals(nameStudent)) {
+                     // Hiện thông tin sinh viên cần cập nhật
+                     System.out.println("Thông tin sinh viên cần cập nhật: ");
+                     DisplayStudent(students.get(i));
+                     // Hiện menu
+                     subjectMenu(students, i);
+                     // thông tin sinh viên sau khi cập nhật
+                     System.out.println("Thông tin sau khi cập nhât: ");
+                     DisplayStudent(students.get(i));
+                     // hiện lại menu cập nhật môn học cho sinh viên
+                     subjectMenu(students, i);
+                     // biến đếm khi phát hiện có sinh viên
+                     count++;
+                 }
+             }
+             // cập nhật thông tin môn học của sinh viên nếu tìm thấy
+             if (count == 0) {
+                 System.out.println("Không tìm thấy thông tin sinh viên!");
+             }
+         } catch (Exception e) {
+             System.out.println(e.getMessage());
+         }
+    }
+
+    public void subjectMenu(ArrayList<Student> students, int index) {
+        Subject subject = new Subject();
+        System.out.println("1. Thêm môn học");
+        System.out.println("2. Sửa môn học");
+        System.out.println("3. Xóa môn học");
+        System.out.println("0. Trở về");
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Nhập lựa chọn: ");
+            int input = scanner.nextInt();
+            switch (input) {
+                case 1:
+                    TreeSet<Subject> addSubject = subject.AddSubject();
+                    students.get(index).subjects.addAll(addSubject);
+                    break;
+                case 3:
+                    subject.DeleteSubject(students.get(index).subjects);
+                    break;
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -181,4 +249,5 @@ public class Student extends People {
             System.out.println(e.getMessage());
         }
     }
+
 }

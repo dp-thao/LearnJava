@@ -25,7 +25,7 @@ public class Main {
         System.out.println("  1. Nhập danh sách sinh viên.");
         System.out.println("  2. Hiện danh sách sinh viên.");
         System.out.println("  3. Xóa sinh viên.");
-        System.out.println("  4. Cập nhật gpa sinh viên.");
+        System.out.println("  4. Cập nhật thông tin sinh viên.");
         System.out.println("  5. Tìm kiếm sinh viên.");
         System.out.println("  6. Sắp xếp sinh viên.");
         System.out.println("  0. Thoát chương trình.");
@@ -49,7 +49,7 @@ public class Main {
                 menu();
                 break;
             case 4:
-                student.UpdateStudent(students);
+                UpdateMenu();
                 menu();
                 break;
             case 5:
@@ -65,6 +65,31 @@ public class Main {
             case 0:
                 exit(0);
             default:
+                break;
+        }
+    }
+
+    public void UpdateMenu() {
+        System.out.println("1. Cập nhật tuổi sinh viên");
+        System.out.println("2. Cập nhật GPA");
+        System.out.println("3. Cập nhật môn học");
+        System.out.println("0. Thoát chức năng cập nhật");
+        System.out.print("Lựa chọn cập nhật theo: ");
+        Scanner scanner = new Scanner(System.in);
+        int inner = scanner.nextInt();
+        switch (inner) {
+            case 1:
+                break;
+            case 2:
+                student.UpdateStudent(students);
+                break;
+            case 3:
+                student.UpdateSubjectStudent(students);
+                break;
+            case 0:
+                exit(0);
+            default:
+                UpdateMenu();
                 break;
         }
     }
