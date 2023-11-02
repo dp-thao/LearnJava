@@ -5,6 +5,20 @@ import java.util.*;
 public class Subject  implements Comparable<Subject>{
     private String nameSubject;
 
+    public String getNameSubject() {
+        return nameSubject;
+    }
+
+    public void setNameSubject(String nameSubject) {
+        this.nameSubject = nameSubject;
+    }
+
+    public Subject(String nameSubject) {
+        this.nameSubject = nameSubject;
+    }
+
+    public Subject() {}
+
     public static TreeSet<Subject> subjects;
 
     public TreeSet<Subject> AddSubject() {
@@ -37,18 +51,23 @@ public class Subject  implements Comparable<Subject>{
         return subject;
     }
 
-    public TreeSet<Subject> DeleteSubject(TreeSet<Subject> subjects) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập vào tên môn học muốn xóa: ");
-        String nameSubject = scanner.next();
-        boolean result = subjects.contains(nameSubject);
-        if (result) {
-            subjects.remove(nameSubject);
-        } else {
-            System.out.println("Không có môn học cần xóa.");
+    public void DeleteSubject(TreeSet<Subject> subjects) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Nhập vào tên môn học muốn xóa: ");
+            String name = scanner.next();
+            Iterator<Subject> iterator = subjects.iterator();
+            while (iterator.hasNext()) {
+                if (iterator.next().nameSubject.toString().equals(name)) {
+                    subjects.remove(new Subject(name));
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-        return subjects;
     }
+
+
 
     @Override
     public int compareTo(Subject o) {

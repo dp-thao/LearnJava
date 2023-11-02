@@ -400,7 +400,7 @@
      + ArrayIndexOutOfBoundsException: truy cập mảng ngoài giới hạn
      + ArithmeticException: chia một số cho 0
      + "Nếu đây là một ngoại lệ trong thời gian chạy thì đó là lỗi của bạn."
-   - IOE Exception: ngoại lệ được kiểm tra.
+   - IO Exception: ngoại lệ được kiểm tra.
      + Chúng được trình biên dịch kiểm tra tại thời điểm biên dịch và lập trình viên được nhắc xử lý các ngoại lệ này.
      
 ## 2. Java Exception Handling
@@ -528,7 +528,6 @@ nào có thể xảy ra thì sử dụng throws.
      + giúp nắm bắt mọi lỗi có thể xảy ra
      + cung cấp hỗ trợ chẩn đoán và gỡ lỗi vấn đề
 
-
 # VIII. JAVA LIST
 
 ## 1. Java Collections Framework
@@ -579,7 +578,7 @@ nhóm giống như tập hợp trong toán học.
       + Để xử lý vấn đề này, chúng ta có thể sử dụng lớp ArrayList. Nó cho phép chúng ta tạo các mảng có thể thay đổi 
     kích thước.
       + Không giống như mảng, danh sách mảng có thể tự động điều chỉnh dung lượng khi chúng ta thêm hoặc xóa các phần 
-    tử khỏi chúng. Do đó, danh sách mảng còn được gọi là mảng động.
+    tử khỏi chúng. Do đó, ArrayList còn được gọi là mảng động.
    - Các thao tác cơ bản với ArrayList:
       + Add elements
         + Other way to add elements to arraylist:
@@ -790,4 +789,102 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
 ## 10. Java Listlterator
    - cung cấp chức năng truy cập phần tử của danh sách.
    - Nó là hai chiều. Điều này có nghĩa là nó cho phép chúng ta lặp lại các phần tử của danh sách theo cả hai hướng.
+
+# Java I/O Streams
+
+## 1. Java I/O Streams
+   - Luồng là chuỗi dữ liệu được đọc từ nguồn và ghi vào đích.
+   - Các lớp con:
+     - FileInputStream
+     - ByteArrayInputStream
+     - ObjectInputStream
+
+
+## 2. Java InputStream
+   - là một lớp trừu tượng trong java, nằm trong giao diện i/o. được sử dụng để đọc dữ liệu từ nguồn dữ liệu, chẳng hạn 
+   như tệp tin, kết nối mạng, hoặc các nguồn dữ liệu khác.
+   - Một số lớp triển khai InputStream phổ biến bao gồm:
+     - FileInputStream: Sử dụng để đọc dữ liệu từ tệp tin trên đĩa cứng.
+     - ByteArrayInputStream: Sử dụng để đọc dữ liệu từ mảng byte đã có sẵn trong bộ nhớ.
+     - SocketInputStream: Sử dụng để đọc dữ liệu từ một kết nối socket khi bạn giao tiếp qua mạng với máy chủ hoặc máy khách.
+     - BufferedInputStream: Là một lớp bọc (wrapper) cho InputStream để cải thiện hiệu suất đọc dữ liệu bằng cách đệm 
+     (buffer) dữ liệu đọc vào bộ nhớ tạm thời.
+
+
+## 3. Java OutputStream
+
+
+## 4. Java FileInputStream
+   - được sử dụng để đọc dữ liệu (tính bằng byte) từ các tệp.
+   - các phương thức:
+     - read(): đọc một byte từ tệp tin
+     - read(byte[] array) : đọc các byte từ tệp và lưu trữ trong mảng đã chỉ định
+     - read(byte[] array, int start, int length)
+     - available() : Để lấy số byte có sẵn, chúng ta có thể sử dụng phương thức available() này.
+     - skip(): Để loại bỏ và bỏ qua số byte đã chỉ định, có thể sử dụng skip().
+     - close(): Để đóng luồng đầu vào của tệp, khi close() được gọi, không thể sử dụng luồng đầu vào để đọc dữ liệu.
+     - finalize()	đảm bảo rằng close()phương thức được gọi
+
+## 5. Java FileOutputStream
+   - được sử dụng để ghi dữ liệu (tính bằng byte) vào các tệp.
+   - các phương thức:
+     - flush() : Phương thức này buộc luồng đầu ra ghi tất cả dữ liệu vào đích
+     - close(): Để đóng luồng đầu ra của tệp. Khi phương thức được gọi, chúng ta không thể sử dụng các phương thức 
+     của FileOutputStream.
+     - finalize()	đảm bảo rằng close()phương thức được gọi
+       getChannel()	trả về đối tượng được FileChannelliên kết với luồng đầu ra
+       getFD()	trả về bộ mô tả tệp được liên kết với luồng đầu ra
+
+
+## 6. Java ByteArrayInputStream
+   - có thể được sử dụng để đọc một mảng dữ liệu đầu vào (tính bằng byte).
+   - Các phương thức:
+     - read()- đọc byte đơn từ mảng có trong luồng đầu vào
+       read(byte[] array)- đọc byte từ luồng đầu vào và lưu trữ trong mảng đã chỉ định
+       read(byte[] array, int start, int length)- đọc số byte bằngchiều dàitừ luồng và lưu trữ trong mảng đã chỉ định 
+        bắt đầu từ vị tríbắt đầu
+     - available() : Để lấy số byte có sẵn trong luồng đầu vào
+     - Skip(): Để loại bỏ và bỏ qua số byte đã chỉ định
+     - close()
+     - finalize()	đảm bảo rằng close()phương thức được gọi
+       mark()	đánh dấu vị trí trong luồng đầu vào mà dữ liệu đã được đọc
+       reset()	trả điều khiển về điểm trong luồng đầu vào nơi đánh dấu được đặt
+       markSupported()	kiểm tra xem luồng đầu vào có hỗ trợ mark()vàreset()
+
+## 7. Java ByteArrayOutputStream
+   - được sử dụng để ghi một mảng dữ liệu đầu ra (tính bằng byte).
+   - các phương thức:
+     - write(int byte) - writes the specified byte to the output stream
+       write(byte[] array) - writes the bytes from the specified array to the output stream
+       write(byte[] arr, int start, int length) - writes the number of bytes equal to length to the output stream from an array starting from the position start
+       writeTo(ByteArrayOutputStream out1) - writes the entire data of the current output stream to the specified output stream
+     - toByteArray() - returns the array present inside the output stream
+       toString() - returns the entire data of the output stream in string form
+
+
+## 8. Java ObjectInputStream
+   - được sử dụng để đọc các đối tượng được viết trước đó bởi ObjectOutputSteam
+   - các phương thức:
+     - read(): đọc 1 byte dữ liệu từ luồng đầu vào
+     - readBoolean(): đọc dữ liệu ở dạng boolean
+     - readChar():đọc dữ liệu dưới dạng kí tự
+     - readInt(): đọc dữ liệu ở dạng số nguyên
+     - readObject(): đọc đối tượng từ luồng đầu vào
+
+
+## 9. Java ObjectOutputStream
+   - ObjectOutputStream mã hóa các đối tượng Java bằng cách sử dụng tên lớp và giá trị đối tượng.
+
+
+## 10. Java BufferedInputStream Class
+   - được sử dụng với các luồng đầu vào khác để đọc dữ liệu (tính bằng byte) hiệu quả hơn.
+
+
+## 11. Java BufferedOutputStream Class
+   - được sử dụng cùng với các luồng cầu ra khác để ghi dữ liệu (tính bằng byte) hiê quả hơn.
+
+## 12. Java PrintStream Class
+   - được sử dụng để ghi dữ liệu đầu ra ở dạng (văn bản) thường để đọc được thay vì byte.
+   - 
+
 

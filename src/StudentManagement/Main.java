@@ -79,6 +79,7 @@ public class Main {
         int inner = scanner.nextInt();
         switch (inner) {
             case 1:
+                student.UpdateAgeStudent(students);
                 break;
             case 2:
                 student.UpdateStudent(students);

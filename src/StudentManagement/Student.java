@@ -136,6 +136,7 @@ public class Student extends People {
          }
     }
 
+    // menu cập nhật môn học
     public void subjectMenu(ArrayList<Student> students, int index) {
         Subject subject = new Subject();
         System.out.println("1. Thêm môn học");
@@ -152,12 +153,40 @@ public class Student extends People {
                     students.get(index).subjects.addAll(addSubject);
                     break;
                 case 3:
+                    // hàm trả về danh sách môn học sau khi xóa
                     subject.DeleteSubject(students.get(index).subjects);
                     break;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    // cập nhật tuổi sinh viên
+    public void UpdateAgeStudent(ArrayList<Student> students) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Nhập tên sinh viên muốn cập nhật tuổi: ");
+            String infoStudent = scanner.next();
+            int count = 0;
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).getName().contains(infoStudent)) {
+                    System.out.print("Nhập tuổi muốn thay đổi: ");
+                    int ageNew = scanner.nextInt();
+                    students.get(i).setAge(ageNew);
+                    System.out.println("Thông tin sinh viên sau khi cập nhật thông tin: ");
+                    DisplayStudent(students.get(i));
+                    count++;
+                    break;
+                }
+            }
+            if (count == 0) {
+                System.out.println("Không tìm thấy sinh viên.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     // Cập nhật gpa của sinh viên
