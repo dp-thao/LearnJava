@@ -31,10 +31,10 @@ public class Subject  implements Comparable<Subject>{
         while (i < quantity) {
             Subject subject = new Subject();
             System.out.print("Nhập môn học " + (i+1) + ": ");
-
-            String nameSubject1 = scanner.next();
+            scanner.nextLine();
+            String nameSubject1 = scanner.nextLine();
             subject.nameSubject = nameSubject1;
-//            subject.nameSubject = scanner.next();
+//            subject.nameSubject = scanner.nextLine();
             subjects.add(subject);
 
             i++;

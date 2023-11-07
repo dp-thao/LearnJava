@@ -40,7 +40,8 @@ class JavaVector {
         System.out.println("New Vector: " + animals);
 
         // Using clear()
-        animals.clear();
+//        animals.clear();
+        animals.removeAll(animals);
         System.out.println("Vector after clear(): " + animals);
     }
 }

@@ -1,4 +1,4 @@
-# **IV.OOP(1)**
+# IV.OOP(1)
 
 ## 1. Lớp và đối tượng
 
@@ -456,6 +456,7 @@ inside the try block or not.
 nào có thể xảy ra thì sử dụng throws.
    - throws thường được dùng với try catch để xử lý ngoại lệ một cách toàn diện.
 
+
 ## 5. Java catch Multiple Exceptions
    - Có thể viết được nhiều loại exception trong catch thông qua kí tự |
    - Cú pháp:
@@ -467,9 +468,11 @@ nào có thể xảy ra thì sử dụng throws.
    - Nếu đã sử dụng Exception trong khối catch thì không sử dụng ngoại lệ con cùng một khối catch, nếu không sẽ gặp lỗi
   biên dịch.
 
+
 ## 6. Java try-with-resources
-   - try-with-resources là lệnh tự đóng tất cả các tài nguyên (resources) ở cuối câu lệnh. Tài nguyên là một đối tượng
-   được đóng vào cuối chương trình.
+   - Try-with-resources là một cấu trúc trong ngôn ngữ lập trình Java được sử dụng để quản lý và tự động đóng các tài 
+   nguyên bên ngoài (như tệp, socket, hoặc cơ sở dữ liệu) sau khi đã hoàn thành việc sử dụng chúng. Cấu trúc này giúp 
+   tránh tình trạng rò rỉ tài nguyên và giảm nguy cơ xảy ra lỗi do việc quên đóng tài nguyên.
    - cú pháp:
    `try (resource declaration) {
       // use of the resource
@@ -492,6 +495,18 @@ nào có thể xảy ra thì sử dụng throws.
      +  sử dụng phương thức Throwable.getSuppressed() để loại bỏ ngoại lệ do try ném ra.
      + phương thức này trả về một mảng gồm tất cả các ngoại lệ bị loại bỏ.
    - try với nhiều resources: sử dụng dấu ; để phân tách
+       `try (FileInputStream input = new FileInputStream("input.txt");
+            FileOutputStream output = new FileOutputStream("output.txt")) {
+            // Sử dụng input và output ở đây
+       } catch (IOException e) {
+            // Xử lý ngoại lệ
+       }`
+   - là gì? try-with-resources được sử dụng để tự động đóng tài nguyên như tệp, databse khi hoàn thành sử dụng. Giúp
+   tránh tình trạng rò rỉ tài nguyên, hoặc tránh xảy ra lỗi khi quên đóng tài nguyên.
+   - tác dụng? giảm nguy cơ lỗi, tự động đóng tài nguyên, giúp mã ngắn gọn hơn, an toàn ngay cả khi xảy ra ngoại lệ, 
+   giúp tránh trường hợp tài nguyên không được đóng đúng cách.
+   - khi nào nên dùng? dùng khi làm việc với tệp, với mạng, với cơ sở dữ liệu, và tài nguyên ngoại vi khác.
+
 
 ## 7. Java Annotation
    - Chú thích bắt đầu bằng @
@@ -501,7 +516,7 @@ nào có thể xảy ra thì sử dụng throws.
    - Chú thích phần tử đơn: chỉ chứa một phần tử\
      + Cú pháp: @AnnotationName(elementName = "elementValue")
      + Nếu chỉ có một phần tử thì quy ước đặt tên phần tử đó là value: @AnnotationName(value = "elementValue")
-     + Trong trường hợp này, tên thành phần cũng có thể bị loại trừ. Tên phần tử sẽ làgiá trịtheo mặc định. 
+     + Trong trường hợp này, tên thành phần cũng có thể bị loại trừ. Tên phần tử sẽ là giá trị theo mặc định. 
      @AnnotationName("elementValue")
    - Chú thích nhiều phần tử:
      + Các chú thích này chứa nhiều phần tử được phân tách bằng dấu phẩy.
@@ -518,15 +533,63 @@ nào có thể xảy ra thì sử dụng throws.
      + Chú thích meta
      + Chú thích tùy chỉnh
 
+
 ## 8. Java Logging
    - Java cho phép chúng ta tạo và ghi lại các thông điệp và tệp tường trình thông qua quá trình ghi nhật ký.
-   - Lớp này Loggercung cấp các phương thức để ghi nhật ký. Chúng ta có thể khởi tạo các đối tượng từ Loggerlớp và gọi 
+   - Lớp này Loggercung cấp các phương thức để ghi nhật ký. Chúng ta có thể khởi tạo các đối tượng từ lớp Logger và gọi 
   các phương thức của nó cho mục đích ghi nhật ký.
-   - Có 7 cấp độ nhật ký cơ bản
+   - Có 7 cấp độ ghi nhật ký cơ bản:
+     - Level.SEVERE : log chỉ các lỗi nghiêm trọng
+     - Level.WARNING : log các cảnh báo
+     - Level.INFO : log các thông tin
+     - Level.CONFIG : log các thông tin về cấu hình
+     - Level.FINE : log các thông điệp chi tiết hơn (thích hợp cho debugging)
+     - Level.FINER : log các thông điệp cực kì chi tiết (cần phân tích nhiều hơn)
+     - Level.FINEST: Log các thông điệp rất chi tiết (để phân tích cực kỳ chi tiết)
    - Ưu điểm của việc ghi nhật ký
      + giúp theo dõi dòng chảy của chương trình
      + giúp nắm bắt mọi lỗi có thể xảy ra
      + cung cấp hỗ trợ chẩn đoán và gỡ lỗi vấn đề
+   - ghi nhật kí hoặc thông điệp vào 1 tệp nhật ký hoặc tệp nhật kí mặc định.
+   - thông điệp nhật kí mặc định KHÔNG hiển thị trên giao diện người dùng của ứng dụng, chúng được lưu trữ trong 1 tệp
+   hoặc 1 cơ sở dữ liệu để sau này kiểm tra và phân tích.
+   - Khi ghi thông điệp nhật kí bằng 'java.util.logging', cần cấu hình logger để chỉ định nơi lưu trữ thông điệp. Một số
+    cách cấu hình:
+     - 1.Ghi vào tệp cụ thể: cấu hình logger để ghi nhật kí vào 1 tệp cụ thể bằng cách sử dụng "FileHandler"
+     - 2.Ghi vào tệp cấu hình: có thể cấu hình logger để ghi vào một tệp được định nghĩa trong tệp cấu hình
+        'logging.properties'. điều này thường được thực hiện bằng cách chỉ định đường dẫn trong tệp cấu hình.
+     - 3.Ghi vào cơ sở dữ liê hoặc nơi lưu trữ khác
+          (các cấu hình logger và nơi thông điệp nhật kí được ghi sẽ phụ thuộc vào yêu cầu cụ thể của ứng dụng)
+     - Trình xử lý ghi nhật ký: 2 trình xử lý mặc định: 
+       - ConsoleHandler : ghi tất cả các thông báo ghi nhật ký vào bảng điều khiển
+       - FileHandler : ghi tất cả các thông báo ghi nhật ký vào tệp ở định dạng XML
+     - Trình định dạng ghi nhật kí:
+       - SimpleFormatter : Trình định dạng này tạo tin nhắn văn bản với thông tin cơ bản. ConsoleHandler sử dụng lớp 
+       định dạng này để in thông điệp tường trình ra bàn điều khiển.
+       - XMLFormatter : Trình định dạng này tạo thông báo XML cho nhật ký, FileHandler sử dụng XMLFormatter làm trình 
+       định dạng mặc định.
+     - log.trace(): Ghi lại thông tin chi tiết ở cấp độ TRACE.
+       log.debug(): Ghi lại thông tin debug ở cấp độ DEBUG.
+       log.info(): Ghi lại thông tin ở cấp độ INFO.
+       log.warn(): Ghi lại cảnh báo ở cấp độ WARN.
+       log.error(): Ghi lại lỗi ở cấp độ ERROR.
+       log.fatal(): Ghi lại lỗi nghiêm trọng ở cấp độ FATAL.
+     - Ghi log những gì?
+       - Ghi nhiều thì nhiều log gây thừa và tốn dung lượng lưu trữ, khó kiểm soát. Ghi ít thì không có log để xử lý.
+       - Cần ghi đủ:
+         - Trong các khối catch exception, cần phải ghi log để tìm ra được vị trí gây lỗi trong ứng dụng khi có vấn đề 
+         xảy ra.
+         - Các chức năng sử dụng nhiều, có khả năng gây cao tải hệ thống, các chức năng quan trọng cần ghi log để giám 
+         sát thường xuyên, đảm bảo hệ thống vẫn đang chạy ổn định.
+     - Ghi log cần đảm bảo:
+       - Nếu quá trình ghi log xảy ra lỗi thì ứng dụng vẫn phải chạy bình thường.
+       - Thời gian xử lý ghi log không được làm ảnh hưởng đến thời gian xử lý nghiệp vụ.
+     
+     - https://www.digitalocean.com/community/tutorials/logger-in-java-logging-example
+     - https://websitehcm.com/logger-trong-java/
+     - https://tunghuynh.net/programer/java/2254/
+     - https://truongnq.com/post/ghi-log-sao-cho-dung/#1-log-l%C3%A0-g%C3%AC-t%E1%BA%A1i-sao-c%E1%BA%A7n-ghi-log
+
 
 # VIII. JAVA LIST
 
@@ -543,6 +606,14 @@ con của nó như List, Set và Queue.
       + The Collection interface is the root interface of the collections framework
       + Framework bao gồm các giao diện khác: Map and Iterator.
       + These interfaces may also have subinterfaces.
+    - ChatGPT:
+      + Logging là quá trình ghi lại thông tin và sự kiên quan trọng trong một ứng dụng hoặc hệ thống máy tính. Mục đích
+     chính là theo dõi hoạt động của ứng dụng hoặc hệ thống, giúp phát hiện và khắc phục sự cố, theo dõi hiệu suất và
+     và cung cấp thông tin hữu ích để phân tích và cải tiến ứng dụng hoặc hệ thống.
+      + Thông tin được ghi lại trong các tệp nhật ký, hoặc cơ sở dữ liệu nhật kí, bao gồm các loại sự kiện như lỗi, cảnh
+     báo, thời gian xảy ra sự kiện,...
+    - Khái quát:
+      + ghi nhật kí là một trợ giúp mạnh để hiểu và gỡ lỗi trong thời gian chạy của chương trình.
 
 ## 2. Java Collection Interface
 
@@ -570,7 +641,7 @@ nhóm giống như tập hợp trong toán học.
 
 ## 4. Java ArrayList
 
-   - Sử dụng lớp ArrayList để triển khai chức năng của mảng có thể thay đổi kích thước.
+   - Có thể linh động kích thước tùy ý.
    - Nó triển khai List interface của collections framework.
    - Java ArrayList Vs Array:
       + Trong Java, chúng ta cần khai báo kích thước của một mảng trước khi có thể sử dụng nó. Khi kích thước của mảng 
@@ -587,6 +658,7 @@ nhóm giống như tập hợp trong toán học.
       + Change elements
       + Remove elements
         + We can also remove all the elements from the arraylist at once:  removeAll(), clear().
+   + https://www.javacodeexamples.com/java-arraylist-sublist-example/985
 
 ## 5. Java Vector
 
@@ -683,6 +755,7 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
    - linkedBloking: không bắt buộc cố định
    - trong một số trường hợp khi cố định kích thước hàng đợi sẽ giúp hoạt động nhanh hơn
 
+
 # X. JAVA MAP
 
 ## 1. Java Map Interface
@@ -728,6 +801,7 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
    - cung cấp map theo luồng, nhiều luồng có thể truy cập map cùng một lúc, không làm ảnh hưởng đến tính nhất quán trong
   map.
    - không yêu cầu thứ tự phần tử.
+
 
 # XI. JAVA SET
 
@@ -790,7 +864,8 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
    - cung cấp chức năng truy cập phần tử của danh sách.
    - Nó là hai chiều. Điều này có nghĩa là nó cho phép chúng ta lặp lại các phần tử của danh sách theo cả hai hướng.
 
-# Java I/O Streams
+
+# XII. Java I/O Streams
 
 ## 1. Java I/O Streams
    - Luồng là chuỗi dữ liệu được đọc từ nguồn và ghi vào đích.
@@ -885,6 +960,85 @@ Collections.synchronizedList() để đồng bộ hóa toàn bộ danh sách.
 
 ## 12. Java PrintStream Class
    - được sử dụng để ghi dữ liệu đầu ra ở dạng (văn bản) thường để đọc được thay vì byte.
+
+
+# XIII. Java Reader/Writer
+
+## 1. Java Reader
+   - là một siêu lớp trừu tượng đại diện cho 1 dòng kí tự
+   - Các lớp con của Reader:
+     - BufferedReader : sử dụng để đọc dữ liệu văn bản từ một luồng đầu vào (input stream) với sự hỗ trợ của bộ đệm 
+     (buffer). Điều này giúp tối ưu hóa hiệu suất đọc dữ liệu bằng cách đọc dữ liệu theo lô (chunks) thay vì từng byte một.
+     - InputStreamReader :  được sử dụng để đọc dữ liệu ký tự từ một luồng đầu vào (input stream), nhưng nó làm nhiệm 
+     vụ chuyển đổi byte đọc được từ nguồn thành ký tự sử dụng mã hóa (encoding) cụ thể
+     - StringReader : dùng để đọc dữ liệu ký tự từ một chuỗi (String) thay vì từ một nguồn đầu vào như tệp tin hoặc 
+     luồng dữ liệu.
+     - FileReader : được sử dụng để đọc dữ liệu văn bản từ một tệp tin. Nó là một lớp tiện ích để đọc nội dung của tệp 
+     tin văn bản.
+
+## 2. Java Writer
+   - BufferedWriter
+   - InputStreamWriter
+   - StringWriter
+   - FileWriter
+
+## 3. Java InputStreamReader
+   - được sử dụng để chuyển đổi dữ liệu theo byte thành dữ liệu theo ký tự.
+   - getEncoding() có thể được sử dụng để lấy loại mã hóa được sử dụng để lưu trữ dữ liệu trong luồng đầu vào
+
+## 4. Java OutputStreamWriter
+   -  được sử dụng để chuyển đổi dữ liệu ở dạng ký tự thành dữ liệu ở dạng byte.
    - 
 
 
+## 5. Java FileReader
+
+
+## 6. Java FileWriter
+
+
+## 7. Java BufferedReader
+
+
+## 8. Java BufferedWriter
+
+
+## 9. StringReader
+
+
+## 10. StringWriter
+
+
+## 11. JavaPrintWriter
+
+
+// Trang web về Java
+Programiz: https://www.programiz.com/
+JavaCodeExamples: https://www.javacodeexamples.com/
+DigitalOcean: https://www.digitalocean.com/community/tutorials/logger-in-java-logging-example
+- https://websitehcm.com/logger-trong-java/
+- https://tunghuynh.net/programer/java/2254/
+- https://truongnq.com/post/ghi-log-sao-cho-dung/#1-log-l%C3%A0-g%C3%AC-t%E1%BA%A1i-sao-c%E1%BA%A7n-ghi-log
+
+
+# XIV. Additional Topics
+
+## 1. Java Scanner Class
+   - Đọc dữ liệu đầu vào từ các luồng khác nhau
+   - System.in được dùng để lấy đầu vào
+## 2. Java Type Casting : chuyển kiểu dữ liệu
+   - chuyển kiểu mở rộng: không bị mất dữ liệu
+   - chuyển kiểu thu hẹp: có thể bị mất dữ liệu
+## 3. Java autoboxing and unboxing
+   - Autoboxing: trình java tự động chuyển đổi các kiểu nguyên thủy thành các đối tượng lớp trình bao bọc tương ứng
+   - `int a = 56;
+      // autoboxing
+       Interger aObj = a;`
+   - Unboxing: bao bọc các đối tượng thành các kiểu nguyên thủy
+   - `// autoboxing
+      Interger aObj = 56
+      //unboxing
+      int a = aObj;`
+
+## 4. Java Lambda Expressions
+   - 

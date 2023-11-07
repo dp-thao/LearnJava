@@ -1,13 +1,20 @@
 package JavaExceptionHanding;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Java_catchMultipleExceptions {
     // Bắt nhiều ngoại lệ trong catch
     public static void main(String[] args) {
         try {
             int[] array = new int[10];
             array[10] = 30/0;
-        } catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
+            File.createTempFile("","");
+
+        } catch ( ArithmeticException | ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
+        } catch (IOException | ArrayStoreException e) {
+            //System.out.println("A");
         }
 
         // bắt ngoại lệ cơ sở, các ngoại lệ đều là lớp con của Exception,
@@ -28,3 +35,4 @@ public class Java_catchMultipleExceptions {
 //        }
     }
 }
+

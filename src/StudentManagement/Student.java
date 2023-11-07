@@ -10,35 +10,45 @@ public class Student extends People {
     ArrayList<Student> students = new ArrayList<>();
     Student() {}
 
+    Student(int id, String name, int age, float gpa) {
+        super(id, name, age);
+        this.gpa = gpa;
+    }
+
     // Thêm sinh viên
     public ArrayList<Student> AddStudent() {
-        Scanner scanner = new Scanner(System.in);
+        try {
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Nhập số lượng sinh viên: ");
-        int quantity = scanner.nextInt();
-        for (int i = 0; i < quantity; i++) {
-            Student student = new Student();
-            System.out.println("\nNhập thông tin sinh viên thứ: " + (i+1));
-            System.out.print("Nhập mã sinh viên: ");
-            student.setId(scanner.nextInt());
-            System.out.print("Nhập họ tên sinh viên: ");
-            scanner.nextLine(); // nhận Enter sau khi nhấn mã sinh viên
-            student.setName(scanner.nextLine());
-            System.out.print("Nhập tuổi sinh viên: ");
-            student.setAge(scanner.nextInt());
-            System.out.print("Nhập GPA sinh viên: ");
-            student.gpa = scanner.nextFloat();
-            System.out.print("Có nhập thông tin môn học không (1.Có - 0.Không)?: ");
-            int result = scanner.nextInt();
-            if (result == 1) {
-                Subject subject = new Subject();
-                student.subjects = subject.AddSubject();
-            } else {
-                student.subjects = new TreeSet<>();
+            System.out.print("Nhập số lượng sinh viên: ");
+            int quantity = scanner.nextInt();
+            for (int i = 0; i < quantity; i++) {
+                Student student = new Student();
+                System.out.println("\nNhập thông tin sinh viên thứ: " + (i+1));
+                System.out.print("Nhập mã sinh viên: ");
+                student.setId(scanner.nextInt());
+                System.out.print("Nhập họ tên sinh viên: ");
+                scanner.nextLine(); // nhận Enter sau khi nhấn mã sinh viên
+                student.setName(scanner.nextLine());
+                System.out.print("Nhập tuổi sinh viên: ");
+                student.setAge(scanner.nextInt());
+                System.out.print("Nhập GPA sinh viên: ");
+                student.gpa = scanner.nextFloat();
+                System.out.print("Có nhập thông tin môn học không (1.Có - 0.Không)?: ");
+                int result = scanner.nextInt();
+                if (result == 1) {
+                    Subject subject = new Subject();
+                    student.subjects = subject.AddSubject();
+                } else {
+                    student.subjects = new TreeSet<>();
+                }
+                // Thêm sinh viên vào danh sách
+                students.add(student);
             }
-            // Thêm sinh viên vào danh sách
-            students.add(student);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+
         return students;
     }
 
@@ -53,7 +63,6 @@ public class Student extends People {
                 System.out.println("Mã SV: " + student.getId() + "\t\tTên SV: " +  student.getName()+ "\t\tTuổi: " +
                         student.getAge() + "\t\tGPA: " + student.gpa);
             }
-            System.out.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -108,27 +117,29 @@ public class Student extends People {
          try {
              Scanner scanner = new Scanner(System.in);
              System.out.print("\nNhập tên sinh viên muốn cập nhân môn học: ");
-             String nameStudent = scanner.next();
-             int count = 0;
+             String nameStudent = scanner.nextLine();
+             ArrayList<Student> newListStudent = SearchByName(students, nameStudent);
              // tìm kiếm sinh viên để cập nhật thông tin môn học
-             for (int i = 0; i < students.size(); i++) {
-                 if (students.get(i).getName().equals(nameStudent)) {
-                     // Hiện thông tin sinh viên cần cập nhật
-                     System.out.println("Thông tin sinh viên cần cập nhật: ");
-                     DisplayStudent(students.get(i));
+             if (newListStudent.size() > 1) {
+                 // Hiện thông tin sinh viên cần cập nhật
+                 System.out.println("Thông tin sinh viên cần cập nhật: ");
+                 for (int i = 0; i < newListStudent.size(); i++) {
+                     DisplayStudent(newListStudent.get(i));
+                 }
+                 for (int i = 0; i < newListStudent.size(); i++) {
+                     System.out.println("Cập nhật sinh viên " + (i+1) + ": ");
+                     DisplayStudent(newListStudent.get(i));
                      // Hiện menu
-                     subjectMenu(students, i);
+                     subjectMenu(newListStudent, i);
                      // thông tin sinh viên sau khi cập nhật
                      System.out.println("Thông tin sau khi cập nhât: ");
-                     DisplayStudent(students.get(i));
+                     DisplayStudent(newListStudent.get(i));
                      // hiện lại menu cập nhật môn học cho sinh viên
-                     subjectMenu(students, i);
-                     // biến đếm khi phát hiện có sinh viên
-                     count++;
+                     subjectMenu(newListStudent, i);
                  }
-             }
-             // cập nhật thông tin môn học của sinh viên nếu tìm thấy
-             if (count == 0) {
+             } else if (newListStudent.size() == 1) {
+
+             }else {
                  System.out.println("Không tìm thấy thông tin sinh viên!");
              }
          } catch (Exception e) {
@@ -223,9 +234,9 @@ public class Student extends People {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Nhập tên sinh viên muốn tìm kiếm: ");
             String nameStudent = scanner.nextLine();
+            System.out.println("Thông tin sinh viên cần tìm:");
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).getName().contains(nameStudent)) {
-                    System.out.println("Thông tin sinh viên cần tìm:");
                     DisplayStudent(students.get(i));
                     count++;
                 }
@@ -236,6 +247,20 @@ public class Student extends People {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<Student> SearchByName(ArrayList<Student> students, String nameStudent) {
+        ArrayList<Student> studentSearch = new ArrayList<>();
+        try {
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).getName().contains(nameStudent)) {
+                    studentSearch.add(students.get(i));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return studentSearch;
     }
 
     // Sắp xếp giảm dần danh sách sinh viên theo GPA
